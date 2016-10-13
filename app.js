@@ -27,7 +27,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-var ipaddress ;
+var ipaddress;
 
 function initIPAdress() {
     var adr = process.env.OPENSHIFT_NODEJS_IP;
@@ -40,7 +40,7 @@ function initIPAdress() {
 
     ipaddress = adr;
 }
-
+initIPAdress();
 app.get('/', routes.index);
 app.get('/users', user.list);
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
