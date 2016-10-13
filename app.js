@@ -5,7 +5,7 @@ var parser  = require('body-parser');
 var ipaddress ;
 
 function initIPAdress() {
-    var adr = process.env.OPENSHIFT_NODEJS_IP;
+    var adr = process.env.MYAPP_SERVICE_HOST;
     if (typeof adr === "undefined") {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
             //  allows us to run/test the app locally.
@@ -16,7 +16,7 @@ function initIPAdress() {
     ipaddress = adr;
 }
 
-var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var port      = process.env.MYAPP_SERVICE_PORT || 8080;
 
 
 app.get('/', function (req, res) {
