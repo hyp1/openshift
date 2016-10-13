@@ -43,8 +43,8 @@ function initIPAdress() {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-var server_port = process.env.NODEAPP_SERVICE_PORT || 8080
-var server_ip_address = process.env.NODEAPP_SERVICE_HOST || '127.0.0.1'
+var server_port = process.env.NODEAPP_SERVICE_PORT || 8080;
+var server_ip_address = process.env.NODEAPP_SERVICE_HOST || '127.0.0.1';
  console.log(process.env);
 http.createServer(app).listen(server_port,server_ip_address , function(){
   console.log('Express server listening on port ' + app.get('port'));
