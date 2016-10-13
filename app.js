@@ -8,7 +8,7 @@ var app = express();
 var ipaddress ;
 
 function initIPAdress() {
-    var adr = process.env.MYAPP_SERVICE_HOST;
+    var adr = process.env.OPENSHIFT_NODEJS_IP;
     if (typeof adr === "undefined") {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
             //  allows us to run/test the app locally.
