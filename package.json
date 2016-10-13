@@ -6,6 +6,7 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "cloud-env": "^0.2.2",
     "ejs": "*",
     "express": "3.2.6"
   }
