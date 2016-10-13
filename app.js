@@ -19,7 +19,7 @@ function initIPAdress() {
     ipaddress = adr;
 }
 
-var port      = process.env.MYAPP_SERVICE_PORT || 8080;
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 
 app.get('/', function (req, res) {
@@ -33,6 +33,7 @@ app.get('/admin', function (req, res) {
 
 initIPAdress(); //Setup IP adress before app.listen()
 
+console.log(process.env);
 app.listen(port, ipaddress, function() {
         console.log('%s: Node server started on %s:%d ...',
                         Date(Date.now() ), ipaddress, port);
