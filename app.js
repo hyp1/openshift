@@ -13,7 +13,7 @@ function initIPAdress() {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
             //  allows us to run/test the app locally.
             console.warn('No OPENSHIFT_NODEJS_IP var, using localhost');
-            adr = 'localhost';
+            adr = '127.0.0.1';
     }
 
     ipaddress = adr;
