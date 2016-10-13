@@ -9,12 +9,14 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
+var config = require('cloud-env')
+
 var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 8080);
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+//app.set('views', __dirname + '/views');
+//app.set('view engine', 'ejs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
@@ -41,11 +43,10 @@ function initIPAdress() {
     ipaddress = adr;
 }
 
-app.get('/', routes.index);
-app.get('/users', user.list);
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+//app.get('/', routes.index);
+//app.get('/users', user.list);
+
  console.log(process.env);
-http.createServer(app).listen(server_port,server_ip_address , function(){
-  console.log('Express server listening on port ' + app.get('port'));
+http.createServer(app).listen(config.PORT,config.IP, function(){
+	 console.log("Listening on "+config.IP+", port "+config.PORT);
 });
