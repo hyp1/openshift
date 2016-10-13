@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node app.js"
   },
+  "main": "app.js"
   "dependencies": {
     "cloud-env": "^0.2.2",
     "ejs": "*",
