@@ -1,5 +1,8 @@
+var express = require('express');
 var fs      = require('fs');
 var parser  = require('body-parser');
+
+var app = express();
 
 //Setup ip adress and port
 var ipaddress ;
