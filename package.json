@@ -8,6 +8,7 @@
   "dependencies": {
     "cloud-env": "^0.2.2",
     "body-parser": "*",
+    "express": "*",
     "ejs": "*",
     "express": "3.2.6"
   }
