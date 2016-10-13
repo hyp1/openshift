@@ -1,34 +1,7 @@
+var fs      = require('fs');
+var parser  = require('body-parser');
 
-/**
- * Module dependencies.
- */
-
-var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , http = require('http')
-  , path = require('path');
-
-var config = require('cloud-env')
-
-var app = express();
-
-// all environments
-app.set('port', process.env.PORT || 8080);
-//app.set('views', __dirname + '/views');
-//app.set('view engine', 'ejs');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
-
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
-
+//Setup ip adress and port
 var ipaddress ;
 
 function initIPAdress() {
@@ -43,10 +16,21 @@ function initIPAdress() {
     ipaddress = adr;
 }
 
-//app.get('/', routes.index);
-//app.get('/users', user.list);
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
- console.log(process.env);
-http.createServer(app).listen(config.PORT,config.IP, function(){
-	 console.log("Listening on "+config.IP+", port "+config.PORT);
+
+app.get('/', function (req, res) {
+  res.send('Hello World!')
+})
+
+app.get('/admin', function (req, res) {
+        res.setHeader('Content-Type', 'text/html'); 
+        res.send( fs.readFileSync('./index_admin.html') );
+})
+
+initIPAdress(); //Setup IP adress before app.listen()
+
+app.listen(port, ipaddress, function() {
+        console.log('%s: Node server started on %s:%d ...',
+                        Date(Date.now() ), ipaddress, port);
 });
