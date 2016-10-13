@@ -27,11 +27,26 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+var ipaddress ;
+
+function initIPAdress() {
+    var adr = process.env.OPENSHIFT_NODEJS_IP;
+    if (typeof adr === "undefined") {
+            //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
+            //  allows us to run/test the app locally.
+            console.warn('No OPENSHIFT_NODEJS_IP var, using localhost');
+            adr = 'localhost';
+    }
+
+    ipaddress = adr;
+}
+
 app.get('/', routes.index);
 app.get('/users', user.list);
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
  
-http.createServer(app).listen(server_port,server_ip_address , function(){
-  console.log('Express server listening on port ' + app.get('port'));
+http.createServer(app).listen(server_port,ipaddress , function(){
+ // console.log('Express server listening on port ' + app.get('port'));
+  console.log('%s: Node server started on %s:%d ...',
+          Date(Date.now() ), ipaddress, server_port);
 });
