@@ -5,10 +5,8 @@
   "scripts": {
     "start": "node app.js"
   },
-  "main": "app.js"
   "dependencies": {
-    "cloud-env": "^0.2.2",
-   // "ejs": "2.5.2",
-   // "express": "3.2.6"
+    "ejs": "*",
+    "express": "3.2.6"
   }
 }
